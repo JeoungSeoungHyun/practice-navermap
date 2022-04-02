@@ -1,8 +1,6 @@
 package site.metacoding.maptest1.dto;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -24,6 +22,8 @@ public class Item {
     private Integer contentSeq;
     private String areaName;
     private String partName;
+
+    @Column(unique = true)
     private String title;
     private String address;
     private String latitude;

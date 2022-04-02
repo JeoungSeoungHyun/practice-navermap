@@ -1,6 +1,5 @@
 package site.metacoding.maptest1;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -20,7 +19,7 @@ public class Download {
     private final Repository repository;
 
     @GetMapping("/download")
-    public List<?> down() {
+    public void down() {
 
         RestTemplate rt = new RestTemplate();
 
@@ -34,9 +33,15 @@ public class Download {
 
         repository.saveAll(list);
 
+    }
+
+    @GetMapping("/loading")
+    public List<Item> load() {
+
+        List<Item> list = repository.findAll();
         PonitDto ponitDto = new PonitDto();
 
-        System.out.println(ponitDto.toPoint(list));
+        // List<List<String>> points = ponitDto.toPoint(list);
 
         return list;
     }
