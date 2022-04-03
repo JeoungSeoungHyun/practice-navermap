@@ -13,23 +13,46 @@
         .m_box {
             border: 1px black solid;
             border-radius: 10px;
-            background-color: rgb(173, 202, 238);
+            background-color: rgb(235, 233, 153);
             align-items: center;
             justify-content: center;
-            padding: 10;
+            padding: 0 20px 10px 20px;
+            text-align: center;
+        }
+        
+        .inner_box {
+            display: flex;
+            justify-content: end;
+            align-items: center;
+        }
+        
+        .m_btn {
+            height: 25px;
+            background-color: rgb(240, 207, 116);
+            border-radius: 35px;
+            border: 1px solid;
+        }
+        
+        .img_fit {
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
         }
     </style>
 </head>
 
 <body>
 
-    <div id="map" style="width:100%;height:400px;"></div>
-
+    <div id="map" style="width:100%;height:600px;"></div>
     <!-- <script src="/mapInfo.js"></script> -->
-
     <script src="/map.js"></script>
 
+    <button onclick="close();">버튼</button>
     <script>
+        function close() {
+            console.log("버튼눌려짐");
+            alert("안녕");
+        };
     </script>
 </body>
 
