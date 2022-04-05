@@ -6,6 +6,9 @@
 
  let x, y;
 
+ // 전역변수로 잡아줘야 밖에 함수에서 변수를 찾아 닫을 수가 있었다.
+ var infowindow;
+
  let loading = async() => {
      let response = await fetch("/loading");
 
@@ -82,53 +85,54 @@
 
              //  마커 정보창 내용 변경
              var contentString = [
-                 '<div class="m_box">',
-                 '<div class="inner_box">',
-                 `<p style="flex: 1;">${title}</p>`,
-                 '<button type="button" onclick="closeInfo(infowindow)" >X</button>',
-                 '</div>',
-                 '<img class="img_fit" src="/dog.png">',
-                 `<p>${addr}</p>`,
-                 '<a href="javascript:;">상세보기</a>',
-                 '</div>'
+                 `<div class="m_box">
+                 <div class="inner_box">
+                 <p style="flex: 1;">${title}</p>
+                 <button type="button" class="m_btn" onclick="closeInfo()" >X</button>
+                 </div>
+                 <img class="img_fit" src="/dog.png">
+                 <p>${addr}</p>
+                 <a href="javascript:;">상세보기</a>
+                 </div>`
              ].join('');
 
-             var infowindow = new naver.maps.InfoWindow({
+             infowindow = new naver.maps.InfoWindow({
                  content: contentString,
                  borderWidth: 0,
                  disableAnchor: true,
                  backgroundColor: 'transparent',
-                 pixelOffset: new naver.maps.Point(200, -40)
+                 pixelOffset: new naver.maps.Point(0, -180)
              });
 
              //  console.log(infowindow);
 
              map.setCenter(new naver.maps.LatLng(y, x));
-             map.setZoom(map.zoom + 3); // ++는 안되서 +1로 변경 // +1씩은 너무 작은거같다..
-
-             if (map.zoom > 15) {
+             map.setZoom(map.zoom + 2); // ++는 안되서 +1로 변경 // +1씩은 너무 작은거같다..
 
                  // 일단은 해결인데 왜 이렇게 안하면 마지막 marker로 항상 고정이 될까..?
                  for (marker of markers) {
                      if (marker.title == title) {
-                         console.log("여기들오옴");
+                        //  console.log("여기들오옴");
                          console.log(infowindow);
                          if (infowindow.getMap()) {
                              console.log("여기들오옴2");
                              infowindow.close();
                          } else {
+                            console.log("여기들오옴3");
                              infowindow.open(map, marker);
+                             // for문이 돌아서 열리자마자 닫히네... 집에서는 왜 된거지?
+                             break;
                          }
                      }
                  }
-             }
+             
          });
          //  console.log(marker);
      }
 
  };
 
- let closeInfo = (infowindow) => {
+ let closeInfo = () => {
      console.log("하이");
      infowindow.close();
  };
