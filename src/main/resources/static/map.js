@@ -29,21 +29,26 @@
 
  var map = new naver.maps.Map('map', {
      center: position,
-     zoom: 10
+     zoom: 10,
+     zoomControl: true,
+     zoomControlOptions: {
+         position: naver.maps.Position.TOP_RIGHT
+     }
  });
 
- // 지도 리스너 생성
- naver.maps.Event.addListener(map, 'click', function(event) {
+ // 지도 더블클릭시만 확대 되는게 나을듯?
+//  // 지도 리스너 생성
+//  naver.maps.Event.addListener(map, 'click', function(event) {
 
-     console.log(event);
+//      console.log(event);
 
-     x = event.coord.x;
-     y = event.coord.y;
+//      x = event.coord.x;
+//      y = event.coord.y;
 
-     map.setCenter(new naver.maps.LatLng(y, x));
-     map.setZoom(map.zoom + 3);
+//      map.setCenter(new naver.maps.LatLng(y, x));
+//      map.setZoom(map.zoom + 3);
 
- });
+//  });
 
  // 마커 생성 함수
  let markers = [];
