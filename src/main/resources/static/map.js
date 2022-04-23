@@ -117,6 +117,7 @@
                              console.log("여기들오옴2");
                              infowindow.close();
                          } else {
+                             console.log("여기들오옴3");
                              infowindow.open(map, marker);
                          }
                      }
