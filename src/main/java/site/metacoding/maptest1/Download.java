@@ -3,7 +3,9 @@ package site.metacoding.maptest1;
 import java.util.Arrays;
 import java.util.List;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
@@ -13,7 +15,7 @@ import site.metacoding.maptest1.dto.Item;
 import site.metacoding.maptest1.dto.PonitDto;
 
 @RequiredArgsConstructor
-@RestController
+@Controller
 public class Download {
 
     private final Repository repository;
@@ -36,7 +38,7 @@ public class Download {
     }
 
     @GetMapping("/loading")
-    public List<Item> load() {
+    public @ResponseBody List<Item> load() {
 
         List<Item> list = repository.findAll();
         PonitDto ponitDto = new PonitDto();
@@ -44,5 +46,11 @@ public class Download {
         // List<List<String>> points = ponitDto.toPoint(list);
 
         return list;
+    }
+
+    @GetMapping("/view")
+    public String view() {
+
+        return "view";
     }
 }

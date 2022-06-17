@@ -9,6 +9,8 @@
  // 전역변수로 잡아줘야 밖에 함수에서 변수를 찾아 닫을 수가 있었다.
  var infowindow;
 
+
+
  let loading = async() => {
      let response = await fetch("/loading");
 
@@ -30,6 +32,8 @@
  var map = new naver.maps.Map('map', {
      center: position,
      zoom: 10,
+
+     // 줌 컨트롤러 넣기
      zoomControl: true,
      zoomControlOptions: {
          position: naver.maps.Position.TOP_RIGHT
