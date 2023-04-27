@@ -6,19 +6,22 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import lombok.RequiredArgsConstructor;
 import site.metacoding.maptest1.dto.DownloadDto;
 import site.metacoding.maptest1.dto.Item;
-import site.metacoding.maptest1.dto.PonitDto;
 
 @RequiredArgsConstructor
 @Controller
 public class Download {
 
     private final Repository repository;
+
+    @GetMapping("/test")
+    public String test() {
+        return "test";
+    }
 
     @GetMapping("/download")
     public void down() {
@@ -41,7 +44,7 @@ public class Download {
     public @ResponseBody List<Item> load() {
 
         List<Item> list = repository.findAll();
-        PonitDto ponitDto = new PonitDto();
+        // PonitDto ponitDto = new PonitDto();
 
         // List<List<String>> points = ponitDto.toPoint(list);
 

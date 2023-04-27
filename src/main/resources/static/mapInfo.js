@@ -15,8 +15,13 @@ var contentString = [
 ].join('');
 
 var marker = new naver.maps.Marker({
+    id: 'id_test',
+    test : "test",
+    title : "title_test",
+    addr: "aadr_test",
     map: map,
     position: cityhall
+
 });
 
 var infowindow = new naver.maps.InfoWindow({
